@@ -61,3 +61,16 @@ this.state.isLoading;
 this.state.user;
 this.state.error;
 ``` 
+
+### Sample App
+
+#### Running the TodoMVC Sample App
+
+Clone the repo
+`git clone https://github.com/cerebral/cerebral-view-angular2.git`
+
+Install dependencies
+`npm install`
+
+Start the server. It will listen on localhost:3000
+`npm start`
