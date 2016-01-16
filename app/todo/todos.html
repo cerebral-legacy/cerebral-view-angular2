@@ -1,0 +1,50 @@
+<div class="container">
+<section class="todoapp">
+    <header class="header">
+        <h1>todos</h1>
+        <input #new [disabled]="state.isSaving" [(ngModel)]="state.newTodoTitle" (change)="newTodoTitleChanged(new.value)" class="new-todo" placeholder="What needs to be done?" autofocus>
+    </header>
+    <!-- This section should be hidden by default and shown when there are todos -->
+    <section *ngIf="state.hasTodos" class="main">
+        <input (click)="completeAllToggled()" class="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">
+            <!-- These are here just to show the structure of the list items -->
+            <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
+            <li [class.editing]="todo.isEditing" *ngFor="#todo of state.todos | objToArr" [class.completed]="todo.completed">
+                <div class="view">
+                    <input class="toggle" type="checkbox" [checked]="todo.completed" (click)="completedTodo(todo.$ref)">
+                    <label >{{todo.title}}</label>
+                    <button class="destroy" (click)="todoRemoved(todo.$ref)"></button>
+                </div>
+                <input class="edit" value="Create a TodoMVC template">
+            </li>
+        </ul>
+    </section>
+    <!-- This footer should hidden by default and shown when there are todos -->
+    <footer *ngIf="state.hasTodos" class="footer">
+        <!-- This should be `0 items left` by default -->
+        <span class="todo-count"><strong>0</strong> item left</span>
+        <!-- Remove this if you don't implement routing -->
+        <ul class="filters">
+            <li>
+                <a class="selected" href="#/">All</a>
+            </li>
+            <li>
+                <a href="#/active">Active</a>
+            </li>
+            <li>
+                <a href="#/completed">Completed</a>
+            </li>
+        </ul>
+        <!-- Hidden if no completed items are left ↓ -->
+        <button  class="clear-completed">Clear completed</button>
+    </footer>
+</section>
+<footer class="info">
+    <p>Double-click to edit a todo</p>
+    <!-- Remove the below line ↓ -->
+    <!-- Change this out with your name and url ↓ -->
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
+</div>

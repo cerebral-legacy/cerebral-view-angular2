@@ -1,0 +1,7 @@
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.header h1 {
+    top: -200px;
+}
